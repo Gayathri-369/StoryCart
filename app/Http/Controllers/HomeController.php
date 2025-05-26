@@ -11,5 +11,7 @@ class HomeController extends Controller
     {
         $books = Book::all();
         return view('home.index', compact('books'));
+
+
     }
 }

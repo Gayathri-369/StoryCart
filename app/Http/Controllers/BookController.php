@@ -6,25 +6,44 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    // Show all books
+    // Display list of all books on home.index
     public function index()
     {
-        $books = Book::all();
-        return view('books.index', compact('books'));
+        $books = Book::all();  // fetch all books from DB
+        return view('home.index', compact('books'));
     }
 
-    // Show single book detail
+    // Display single book details
     public function show($id)
     {
         $book = Book::findOrFail($id);
-        return view('books.show', compact('book'));
+        return view('home.show', compact('book'));
     }
 
-    // (Optional) Add to Cart - requires session/cart logic
+    // Example: Add book to cart (stored in session)
     public function addToCart($id)
     {
         $book = Book::findOrFail($id);
-        // Logic to add book to cart session can go here
+
+        // Get current cart from session or empty array
+        $cart = session()->get('cart', []);
+
+        // If book is already in cart, increase quantity
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            // Otherwise add new book with quantity 1
+            $cart[$id] = [
+                "title" => $book->title,
+                "quantity" => 1,
+                "price" => $book->price,
+                "cover" => $book->cover
+            ];
+        }
+
+        // Save cart back to session
+        session()->put('cart', $cart);
+
         return back()->with('success', 'Book added to cart!');
     }
 }
