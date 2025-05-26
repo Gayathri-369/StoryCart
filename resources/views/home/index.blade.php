@@ -17,17 +17,17 @@
     </div>
 
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <nav>
-        <ul id="navbar-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Book</a></li>
-            {{-- <li><a href="#">About</a></li> --}}
-            <li><a href="#about" style="text-decoration: none; color: #2c3e50;">About Us</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Log In</a></li>
-            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+   <nav>
+        <ul id="navbar-menu" style="list-style-type: none; padding: 0; display: flex; gap: 20px;">
+            <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Home</a></li>
+            <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Book</a></li>
+            <li><a href="#about" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">About Us</a></li>
+            <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Contact</a></li>
+            <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Log In</a></li>
+            <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'"><i class="fas fa-shopping-cart"></i></a></li>
         </ul>
     </nav>
+
 </header>
 
 <section class="hero">
@@ -102,13 +102,47 @@
         <div style="margin-top: 30px;">
             <h3 style="color: #003366; font-size: 25px;">Follow Us</h3>
             <div style="margin-top: 15px;">
-                <a href="#" style="margin-right: 15px; font-size: 20px; color: #1a4d5c;"><i class="fab fa-facebook"></i></a>
-                <a href="#" style="margin-right: 15px; font-size: 20px; color: #1a4d5c;"><i class="fab fa-twitter"></i></a>
-                <a href="#" style="font-size: 20px; color: #1a4d5c;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="margin-right: 15px; font-size: 20px; color: #003366;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="margin-right: 15px; font-size: 20px; color: #003366;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="font-size: 20px; color: #003366;"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </div>
 </section>
+
+<section class="login-section" style="padding: 50px 20px; background-color: #f9f9f9;">
+    <div class="container" style="max-width: 1000px; margin: 0 auto; text-align: center;">
+        <h2 style="color: #003366; font-size: 35px; margin-bottom: 5px;">Login</h2>
+        <p style="font-size: 1.2em; line-height: 1.6; margin-top: 20px;">
+            Welcome back! Please log in to access your account.
+        </p>
+        <form style="margin-top: 30px; text-align: left; max-width: 400px; margin: 30px auto;">
+            <div style="margin-bottom: 20px;">
+                <label for="email-phone" style="font-size: 0.9em; color: #003366;">Phone number/Email ID</label>
+                <input type="text" id="email-phone" name="email-phone" placeholder="Enter here" 
+                       style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="password" style="font-size: 0.9em; color: #003366;">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" 
+                       style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button 
+                    type="submit" 
+                    style="background-color: #003366; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s ease;" 
+                    onmouseover="this.style.backgroundColor='#0055aa'" 
+                    onmouseout="this.style.backgroundColor='#003366'">
+                    Login
+                </button>
+            </div>
+        </form>
+        <p style="margin-top: 20px; font-size: 1.1em; color: #003366;">
+            New user? <a href="#" style="color: #003366; text-decoration: none; font-weight: bold;">Register here</a>
+        </p>
+    </div>
+</section>
+
 
 <footer class="footer" style="background: linear-gradient(135deg, #e3f5ec, #ffffff); padding: 60px 20px 30px; color: #2c3e50; font-family: 'Segoe UI', sans-serif;">
     <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
