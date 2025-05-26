@@ -283,4 +283,8 @@ nav ul li a {
 .btn-secondary:hover {
     background-color: #dddddd;
 }
+html {
+  scroll-behavior: smooth;
+}
+
 
