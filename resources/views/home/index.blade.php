@@ -79,6 +79,34 @@
     </div>
 </section>
 
+<section class="contact-section" style="padding: 50px 20px; background-color: #f9f9f9;">
+    <div class="container" style="max-width: 1000px; margin: 0 auto; text-align: center;">
+        <h2 style="color: #003366; font-size: 35px; margin-bottom: 5px;">Contact Us</h2>
+        <p style="font-size: 1.1em; line-height: 1.6; margin-top: 20px;">
+            We’d love to hear from you! Whether you have questions, feedback, or need assistance, our team is here to help. Get in touch with us using the information below.
+        </p>
+        <div style="margin-top: 30px; text-align: left;">
+            <p style="font-size: 1.1em; line-height: 1.6; margin-top: 10px;">
+                <strong>Email:</strong> <a href="mailto:support@storycart.com" style="color: #003366; text-decoration: none;">support@storycart.com</a>
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6; margin-top: 10px;">
+                <strong>Phone:</strong> <a href="tel:+1234567890" style="color: #003366; text-decoration: none;">+1 (234) 567-890</a>
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6; margin-top: 10px;">
+                <strong>Address:</strong> 123 Booklover's Lane, Storyville, Fictionland
+            </p>
+        </div>
+        <div style="margin-top: 30px;">
+            <h3 style="color: #003366; font-size: 25px;">Follow Us</h3>
+            <div style="margin-top: 15px;">
+                <a href="#" style="margin-right: 15px; font-size: 20px; color: #1a4d5c;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="margin-right: 15px; font-size: 20px; color: #1a4d5c;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="font-size: 20px; color: #1a4d5c;"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <footer class="footer" style="background: linear-gradient(135deg, #e3f5ec, #ffffff); padding: 60px 20px 30px; color: #2c3e50; font-family: 'Segoe UI', sans-serif;">
     <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
         <div style="flex: 1 1 300px;">
