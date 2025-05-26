@@ -21,7 +21,8 @@
         <ul id="navbar-menu">
             <li><a href="#">Home</a></li>
             <li><a href="#">Book</a></li>
-            <li><a href="#">About</a></li>
+            {{-- <li><a href="#">About</a></li> --}}
+            <li><a href="#about" style="text-decoration: none; color: #2c3e50;">About Us</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Log In</a></li>
             <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
@@ -38,7 +39,9 @@
     </div>
 </section>
 
-<section class="about-section" style="padding: 50px 20px; background-color: #f9f9f9;">
+<section id="about" class="about-section" style="padding: 50px 20px; background-color: #f9f9f9;">
+
+
     <div class="container" style="max-width: 1000px; margin: 0 auto; text-align: center;">
         <h2 style="color: #003366; font-size: 35px; margin-bottom: 5px;">About</h2>
         <p style="font-size: 1.1em; line-height: 1.6; margin-top: 20px;">
