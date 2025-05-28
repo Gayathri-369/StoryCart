@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Book;
@@ -6,44 +7,44 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    // Display list of all books on home.index
     public function index()
     {
-        $books = Book::all();  // fetch all books from DB
-        return view('home.index', compact('books'));
+        $books = Book::all();
+        return view('books.index', compact('books'));
     }
 
-    // Display single book details
-    public function show($id)
+    public function create()
     {
-        $book = Book::findOrFail($id);
-        return view('home.show', compact('book'));
+        return view('books.create');
     }
 
-    // Example: Add book to cart (stored in session)
-    public function addToCart($id)
+    public function store(Request $request)
     {
-        $book = Book::findOrFail($id);
+        $data = $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'price' => 'required|numeric',
+            'cover' => 'nullable|image',
+        ]);
 
-        // Get current cart from session or empty array
-        $cart = session()->get('cart', []);
-
-        // If book is already in cart, increase quantity
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            // Otherwise add new book with quantity 1
-            $cart[$id] = [
-                "title" => $book->title,
-                "quantity" => 1,
-                "price" => $book->price,
-                "cover" => $book->cover
-            ];
+        if ($request->hasFile('cover')) {
+            $data['cover'] = $request->file('cover')->store('images', 'public');
         }
 
-        // Save cart back to session
-        session()->put('cart', $cart);
+        Book::create($data);
 
-        return back()->with('success', 'Book added to cart!');
+        return redirect()->route('books.index')->with('success', 'Book added!');
     }
+
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+
+    $books = Book::where('title', 'like', '%' . $query . '%')
+                ->orWhere('author', 'like', '%' . $query . '%')
+                ->get();
+
+    return view('books.index', compact('books'));
+}
+
 }
