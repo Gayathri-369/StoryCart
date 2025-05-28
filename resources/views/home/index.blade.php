@@ -19,17 +19,18 @@
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
     <nav>
         <ul id="navbar-menu" style="list-style-type: none; padding: 0; display: flex; gap: 20px;">
+            <form action="{{ route('books.search') }}" method="GET" style="margin-left: 20px; display: flex; align-items: center;">
+        <input type="text" name="query" placeholder="Search books..." style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 20px 0 0 20px;">
+        <button type="submit" style="padding: 6px 12px; border: 1px solid #ccc; background-color: #1a4d5c; color: white; border-radius: 0 20px 20px 0;">🔍</button>
+    </form>
             <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Home</a></li>
-            <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Book</a></li>
+            <li><a href="#book" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Book</a></li>
             <li><a href="#about" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">About Us</a></li>
             <li><a href="#contact" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Contact</a></li>
             <li><a href="#login-section" style="text-decoration:none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Log In</a></li>
             <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'"><i class="fas fa-shopping-cart"></i></a></li>
         </ul>
-        <form action="{{ route('books.search') }}" method="GET" style="margin-left: 20px; display: flex; align-items: center;">
-        <input type="text" name="query" placeholder="Search books..." style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 20px 0 0 20px;">
-        <button type="submit" style="padding: 6px 12px; border: 1px solid #ccc; background-color: #1a4d5c; color: white; border-radius: 0 20px 20px 0;">🔍</button>
-    </form>
+        
     </nav>
 
 </header>
@@ -63,32 +64,34 @@
         </p>
     </div>
 </section>
-
-<section class="book-section">
-    <h2 style="text-align: center;">Books</h2>
-    <div class="card-grid" style="display:flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+<!--Book section start-->
+<section class="book-section" style="padding: 20px; color: #003366;">
+    <h2 style="text-align: center;">Books from Our Collection</h2>
+    <div class="card-grid" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
         @foreach($books as $book)
-            <div class="book-card" style="width: 200px; height: 320px; border: 1px solid #ddd; padding: 10px; box-shadow: 2px 2px 6px #ccc;">
-                <img 
-                    src="{{ asset('images/' . $book->cover) }}" 
+            <div class="book-card" style="width: 200px; border: 1px solid #ddd; padding: 10px; box-shadow: 2px 2px 6px #ccc;">
+                <img src="{{ asset('storage/' . $book->cover) }}" 
                     alt="{{ $book->title }}" 
                     style="width: 100%; height: 180px; object-fit: cover;"
-                    onerror="this.src='{{ asset('images/warbook1.jpg') }}'"
-                >
+                    onerror="this.src='{{ asset('images/book5.jpg') }}'">
                 <div class="card-content" style="padding: 8px;">
-                    <h3 style="font-size: 1.1em; margin: 5px 0;">{{ $book->title }}</h3>
-                    <p class="author" style="color: #555; margin: 0 0 8px;">by {{ $book->author }}</p>
-                    <div class="rating" style="color: #f39c12; margin-bottom: 8px;">⭐⭐⭐⭐☆</div> 
-                    <p class="price" style="font-weight: bold; margin-bottom: 8px;">₹{{ number_format($book->price, 2) }}</p>
+                    <h3>{{ $book->title }}</h3>
+                    <p class="author" style="color: #555;">by {{ $book->author }}</p>
+                    <div class="rating" style="color: #f39c12;">{{ str_repeat('⭐', $book->rating) }}</div>
+                    <p class="price" style="font-weight: bold;">₹{{ number_format($book->price, 2) }}</p>
                     <div class="card-buttons" style="display: flex; gap: 5px;">
-                        <a href="#" class="btn" style="flex-grow: 1; background-color: #28a745; color: white; text-align:center; padding: 6px; border-radius: 4px;">🛒 Add to Cart</a>
-                        <a href="{{ route('books.show', $book->id) }}" class="btn-secondary" style="flex-grow: 1; background-color: #007bff; color: white; text-align:center; padding: 6px; border-radius: 4px;">📖 View Details</a>
+                        <a href="#" class="btn" style="background-color: #28a745; color: white;">🛒 Add</a>
+                        <a href="#" class="btn-secondary" style="background-color: #007bff; color: white;">📖 View</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
 </section>
+
+
+<!--Book section end-->
+<!--contact section start-->
 
 <section class="contact-section" id="contact" style="padding: 50px 20px; background-color: #f9f9f9;">
     <div class="container" style="max-width: 1000px; margin: 0 auto; text-align: center;">
@@ -117,6 +120,7 @@
         </div>
     </div>
 </section>
+
 
 <section class="login-section" id="login-section" style="padding: 50px 20px; background-color: #f9f9f9;">
 
@@ -219,19 +223,7 @@
         menu.classList.toggle('active');
     });
 </script>
-<script>
-document.getElementById('login-link').addEventListener('click', function(e) {
-    e.preventDefault();
-    // Hide all other sections if needed (optional)
-    document.querySelectorAll('section').forEach(section => {
-        if (section.id !== 'login-section') {
-            section.style.display = 'none';
-        }
-    });
-    // Show the login section
-    document.getElementById('login-section').style.display = 'block';
-});
-</script>
+
 
 </body>
 </html>
