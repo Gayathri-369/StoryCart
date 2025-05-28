@@ -17,18 +17,26 @@
     </div>
 
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-   <nav>
+    <nav>
         <ul id="navbar-menu" style="list-style-type: none; padding: 0; display: flex; gap: 20px;">
             <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Home</a></li>
             <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Book</a></li>
             <li><a href="#about" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">About Us</a></li>
-            <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Contact</a></li>
-            <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Log In</a></li>
+            <li><a href="#contact" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Contact</a></li>
+            <li><a href="#login-section" style="text-decoration:none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Log In</a></li>
             <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'"><i class="fas fa-shopping-cart"></i></a></li>
         </ul>
+        <form action="{{ route('books.search') }}" method="GET" style="margin-left: 20px; display: flex; align-items: center;">
+        <input type="text" name="query" placeholder="Search books..." style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 20px 0 0 20px;">
+        <button type="submit" style="padding: 6px 12px; border: 1px solid #ccc; background-color: #1a4d5c; color: white; border-radius: 0 20px 20px 0;">🔍</button>
+    </form>
     </nav>
 
 </header>
+
+@extends('layout')
+
+@section('content')
 
 <section class="hero">
     <div class="hero-text">
@@ -82,7 +90,7 @@
     </div>
 </section>
 
-<section class="contact-section" style="padding: 50px 20px; background-color: #f9f9f9;">
+<section class="contact-section" id="contact" style="padding: 50px 20px; background-color: #f9f9f9;">
     <div class="container" style="max-width: 1000px; margin: 0 auto; text-align: center;">
         <h2 style="color: #003366; font-size: 35px; margin-bottom: 5px;">Contact Us</h2>
         <p style="font-size: 1.1em; line-height: 1.6; margin-top: 20px;">
@@ -110,22 +118,23 @@
     </div>
 </section>
 
-<section class="login-section" style="padding: 50px 20px; background-color: #f9f9f9;">
+<section class="login-section" id="login-section" style="padding: 50px 20px; background-color: #f9f9f9;">
+
     <div class="container" style="max-width: 1000px; margin: 0 auto; text-align: center;">
         <h2 style="color: #003366; font-size: 35px; margin-bottom: 5px;">Login</h2>
         <p style="font-size: 1.2em; line-height: 1.6; margin-top: 20px;">
-            Welcome back! Please log in to access your account.
+            Please log in to access your account.
         </p>
         <form style="margin-top: 30px; text-align: left; max-width: 400px; margin: 30px auto;">
             <div style="margin-bottom: 20px;">
                 <label for="email-phone" style="font-size: 0.9em; color: #003366;">Phone number/Email ID</label>
                 <input type="text" id="email-phone" name="email-phone" placeholder="Enter here" 
-                       style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                    style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
             <div style="margin-bottom: 20px;">
                 <label for="password" style="font-size: 0.9em; color: #003366;">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" 
-                       style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                    style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
             <div style="text-align: center; margin-top: 20px;">
                 <button 
@@ -210,5 +219,19 @@
         menu.classList.toggle('active');
     });
 </script>
+<script>
+document.getElementById('login-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    // Hide all other sections if needed (optional)
+    document.querySelectorAll('section').forEach(section => {
+        if (section.id !== 'login-section') {
+            section.style.display = 'none';
+        }
+    });
+    // Show the login section
+    document.getElementById('login-section').style.display = 'block';
+});
+</script>
+
 </body>
 </html>
