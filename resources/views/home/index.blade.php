@@ -24,7 +24,7 @@
         <button type="submit" style="padding: 6px 12px; border: 1px solid #ccc; background-color: #1a4d5c; color: white; border-radius: 0 20px 20px 0;">🔍</button>
     </form>
             <li><a href="#" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Home</a></li>
-            <li><a href="#book" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Book</a></li>
+            <li><a href="#book" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Books</a></li>
             <li><a href="#about" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">About Us</a></li>
             <li><a href="#contact" style="text-decoration: none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Contact</a></li>
             <li><a href="#login-section" style="text-decoration:none; color: #2c3e50;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#2c3e50'">Log In</a></li>
@@ -47,50 +47,72 @@
         <img src="{{ asset('images/home.webp') }}" alt="Books and reading ambiance" style="width: 750px; height: 400px;">
     </div>
 </section>
+<section id="book" class="book-section" style="padding: 30px 10px; background-color: #ffffff;">
+    <div class="container" style="max-width: 1000px; margin: 0 auto;">
+        <h2 style="color: #003366; font-size: 26px; text-align: center; margin-bottom: 20px;">Our Books</h2>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 15px;">
 
-<section id="about" class="about-section" style="padding: 50px 20px; background-color: #f9f9f9;">
-
-
-    <div class="container" style="max-width: 1000px; margin: 0 auto; text-align: center;">
-        <h2 style="color: #003366; font-size: 35px; margin-bottom: 5px;">About</h2>
-        <p style="font-size: 1.1em; line-height: 1.6; margin-top: 20px;">
-            Welcome to <strong>StoryCart</strong>, your digital destination for discovering, enjoying, and collecting books that inspire imagination and fuel knowledge. At StoryCart, we believe in the transformative power of stories. Whether you’re a lifelong reader or just starting your literary journey, our curated collection offers something for everyone.
-        </p>
-        <p style="font-size: 1.1em; line-height: 1.6; margin-top: 15px;">
-            From timeless classics to modern bestsellers, our mission is to make quality books accessible, enjoyable, and part of your everyday life. With an easy-to-use interface, secure checkout, and a dedicated team passionate about books, StoryCart brings the bookstore experience to your fingertips.
-        </p>
-        <p style="font-size: 1.1em; line-height: 1.6; margin-top: 15px;">
-            Join us in celebrating the joy of reading — one book at a time.
-        </p>
-    </div>
-</section>
-<!--Book section start-->
-<section class="book-section" style="padding: 20px; color: #003366;">
-    <h2 style="text-align: center;">Books from Our Collection</h2>
-    <div class="card-grid" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-        @foreach($books as $book)
-            <div class="book-card" style="width: 200px; border: 1px solid #ddd; padding: 10px; box-shadow: 2px 2px 6px #ccc;">
-                <img src="{{ asset('storage/' . $book->cover) }}" 
-                    alt="{{ $book->title }}" 
-                    style="width: 100%; height: 180px; object-fit: cover;"
-                    onerror="this.src='{{ asset('images/book5.jpg') }}'">
-                <div class="card-content" style="padding: 8px;">
-                    <h3>{{ $book->title }}</h3>
-                    <p class="author" style="color: #555;">by {{ $book->author }}</p>
-                    <div class="rating" style="color: #f39c12;">{{ str_repeat('⭐', $book->rating) }}</div>
-                    <p class="price" style="font-weight: bold;">₹{{ number_format($book->price, 2) }}</p>
-                    <div class="card-buttons" style="display: flex; gap: 5px;">
-                        <a href="#" class="btn" style="background-color: #28a745; color: white;">🛒 Add</a>
-                        <a href="#" class="btn-secondary" style="background-color: #007bff; color: white;">📖 View</a>
+            <!-- Book Card Template (Repeat for Each Book) -->
+            <div style="width: 22%; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <img src="{{ asset('images/book6.jpg') }}" alt="Book Title" style="width: 100%; height: 180px; object-fit: cover;">
+                <div style="padding: 10px;">
+                    <h3 style="font-size: 14px; color: #003366; margin-bottom: 4px;">The Great Adventure</h3>
+                    <p style="color: #777; margin-bottom: 6px; font-size: 12px;">by John Reader</p>
+                    <p style="font-size: 12px; color: #333; margin-bottom: 8px;">An inspiring journey through ancient lands and timeless tales.</p>
+                    <p style="font-size: 14px; font-weight: bold; color: #28a745; margin-bottom: 10px;">₹1,199</p>
+                    <div style="display: flex; gap: 6px;">
+                        <a href="#" style="flex: 1; text-align: center; background-color: #007bff; color: white; padding: 6px 0; border-radius: 4px; font-size: 12px; text-decoration: none;">Buy Now</a>
+                        <a href="#" style="flex: 1; text-align: center; background-color: #ffc107; color: #000; padding: 6px 0; border-radius: 4px; font-size: 12px; text-decoration: none;">Add to Cart</a>
                     </div>
                 </div>
             </div>
-        @endforeach
+
+            <!-- Example of other cards below, just changing image, title, author, and price -->
+            <div style="width: 22%; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <img src="{{ asset('images/book4.jpg') }}" alt="Book Title" style="width: 100%; height: 180px; object-fit: cover;">
+                <div style="padding: 10px;">
+                    <h3 style="font-size: 14px; color: #003366; margin-bottom: 4px;">Whispers of the Forest</h3>
+                    <p style="color: #777; margin-bottom: 6px; font-size: 12px;">by Anna Story</p>
+                    <p style="font-size: 12px; color: #333; margin-bottom: 8px;">A beautiful narrative that connects nature with heartwarming emotion.</p>
+                    <p style="font-size: 14px; font-weight: bold; color: #28a745; margin-bottom: 10px;">₹899</p>
+                    <div style="display: flex; gap: 6px;">
+                        <a href="#" style="flex: 1; text-align: center; background-color: #007bff; color: white; padding: 6px 0; border-radius: 4px; font-size: 12px; text-decoration: none;">Buy Now</a>
+                        <a href="#" style="flex: 1; text-align: center; background-color: #ffc107; color: #000; padding: 6px 0; border-radius: 4px; font-size: 12px; text-decoration: none;">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repeat the same structure for each of the remaining books -->
+            @foreach (['ok3.webp' => ['Digital Dreams', 'Mark Vision','₹1,299',], 
+                       'love.jpg' => ['Love Unfolded', 'Clara Bloom', '₹799'], 
+                       'limits.webp' => ['Beyond Limits', 'David Knox', '₹1,050'],
+                       'oliver.jpg' => ['Oliver’s Odyssey', 'Lisa Milton', '₹999'],
+                       'power.jpg' => ['Power Within', 'Eli Strong', '₹1,199'],
+                       'sam.jpg' => ['Finding Sam', 'Rita Ellis', '₹949'],
+                       'sky.webp' => ['Above the Sky', 'Tina Bright', '₹1,099'],
+                       'winter.jpg' => ['Winter Whispers', 'Kate Snow', '₹1,250'],
+                       'book66.jpg' => ['Storm Pages', 'Eric Storm', '₹850'],
+                       'alchemist.webp' => ['The Alchemist', 'Paulo Coelho', '₹650']] as $img => [$title, $author, $price])
+                <div style="width: 22%; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    <img src="{{ asset('images/' . $img) }}" alt="{{ $title }}" style="width: 100%; height: 180px; object-fit: cover;">
+                    <div style="padding: 10px;">
+                        <h3 style="font-size: 14px; color: #003366; margin-bottom: 4px;">{{ $title }}</h3>
+                        <p style="color: #777; margin-bottom: 6px; font-size: 12px;">by {{ $author }}</p>
+                        <p style="font-size: 12px; color: #333; margin-bottom: 8px;">An inspiring journey through ancient lands and timeless tales.</p>
+                        <p style="font-size: 14px; font-weight: bold; color: #28a745; margin-bottom: 10px;">{{ $price }}</p>
+                        <div style="display: flex; gap: 6px;">
+                            <a href="#" style="flex: 1; text-align: center; background-color: #007bff; color: white; padding: 6px 0; border-radius: 4px; font-size: 12px; text-decoration: none;">Buy Now</a>
+                            <a href="#" style="flex: 1; text-align: center; background-color: #ffc107; color: #000; padding: 6px 0; border-radius: 4px; font-size: 12px; text-decoration: none;">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
     </div>
 </section>
 
-
-<!--Book section end-->
 <!--contact section start-->
 
 <section class="contact-section" id="contact" style="padding: 50px 20px; background-color: #f9f9f9;">
@@ -157,62 +179,7 @@
 </section>
 
 
-<footer class="footer" style="background: linear-gradient(135deg, #e3f5ec, #ffffff); padding: 60px 20px 30px; color: #2c3e50; font-family: 'Segoe UI', sans-serif;">
-    <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
-        <div style="flex: 1 1 300px;">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                <i class="fas fa-book-open-reader fa-2x" style="color: #1a4d5c;"></i>
-                <span style="font-size: 1.7em; font-weight: bold;">Story<span style="color:#1a4d5c;">Cart</span></span>
-            </div>
-            <p style="font-size: 16px; line-height: 1.7;">
-                Your curated library of imagination—where stories meet soul. From bestselling books to bookish boxes, StoryCart brings the joy of reading right to your door.
-            </p>
-            <div style="margin-top: 20px;">
-                <a href="#" style="margin-right: 15px; font-size: 20px; color: #1a4d5c;"><i class="fab fa-facebook"></i></a>
-                <a href="#" style="margin-right: 15px; font-size: 20px; color: #1a4d5c;"><i class="fab fa-twitter"></i></a>
-                <a href="#" style="font-size: 20px; color: #1a4d5c;"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
 
-        <div style="display: flex; flex: 2 1 600px; justify-content: space-between; flex-wrap: wrap; gap: 30px;">
-            <div>
-                <h4 style="font-size: 18px; margin-bottom: 12px; color: #1a4d5c;">Brand Story</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">About Us</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Contact Us</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Blog</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 style="font-size: 18px; margin-bottom: 12px; color: #1a4d5c;">Shop Now</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Books</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Mystery Box</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Merchandise</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Gifting</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 style="font-size: 18px; margin-bottom: 12px; color: #1a4d5c;">Policies</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Privacy Policy</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Shipping & Returns</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Terms & Conditions</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #2c3e50;">Track Order</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center;">
-        <form style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-            <input type="email" placeholder="Subscribe to our newsletter" style="padding: 10px 20px; border-radius: 25px; border: 1px solid #ccc; flex: 1 1 250px;">
-            <button style="background-color: #1a4d5c; color: white; padding: 10px 25px; border-radius: 25px; border: none;">Subscribe</button>
-        </form>
-        <p style="font-size: 14px; margin-top: 30px; color: #555;">© 2025 StoryCart — All Rights Reserved</p>
-        <p style="font-size: 14px; margin-top: 5px; color: #555;">Crafted with 📚 and ❤️ by StoryCart Team</p>
-    </div>
-</footer>
 
 
 
