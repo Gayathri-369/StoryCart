@@ -1,91 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - StoryCart</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to right, #e3f5ec, #ffffff);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        .login-box h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #1a4d5c;
-        }
-        .login-box label {
-            font-weight: 500;
-            color: #333;
-        }
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 6px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-        .login-box button {
-            width: 100%;
-            padding: 12px;
-            background-color: #1a4d5c;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .login-box button:hover {
-            background-color: #15434f;
-        }
-        .register-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .register-link a {
-            color: #1a4d5c;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-box">
-        <h2>Login to StoryCart</h2>
+@extends('layouts.app')
 
-        @if(session('error'))
-            <div style="color: red; margin-bottom: 10px;">{{ session('error') }}</div>
-        @endif
+@section('content')
+<div class="container" style="max-width: 500px; margin-top: 50px;">
+    <div class="card">
+        <div class="card-header text-center" style="background-color: #003366; color: white;">
+            <h4>Login</h4>
+        </div>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+        <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-            <label for="email">Email Address</label>
-            <input type="email" name="email" value="{{ old('email') }}" required autofocus>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-            <label for="password">Password</label>
-            <input type="password" name="password" required>
+                <div class="form-group">
+                    <label for="login">Email or Phone</label>
+                    <input id="login" type="text" class="form-control @error('login') is-invalid @enderror"
+                        name="login" value="{{ old('login') }}" required autofocus placeholder="Enter email or phone number">
 
-            <button type="submit">Login</button>
-        </form>
+                    @error('login')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
 
-        <div class="register-link">
-            <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
+                <div class="form-group mt-3">
+                    <label for="password">Password</label>
+                    <input id="password" type="password"
+                        class="form-control @error('password') is-invalid @enderror"
+                        name="password" required placeholder="Enter your password">
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+
+                <div class="form-group form-check mt-3">
+                    <input type="checkbox" class="form-check-input" name="remember" id="remember"
+                        {{ old('remember') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="remember">Remember Me</label>
+                </div>
+
+                <div class="form-group mt-4 text-center">
+                    <button type="submit" class="btn btn-primary w-100" style="background-color: #003366;">
+                        Login
+                    </button>
+                </div>
+
+                <div class="form-group mt-3 text-center">
+                    @if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            Forgot Your Password?
+                        </a>
+                    @endif
+                </div>
+
+                <div class="form-group mt-3 text-center">
+                    <a href="{{ route('register') }}">Don't have an account? Register here</a>
+                </div>
+            </form>
         </div>
     </div>
-</body>
-</html>
+</div>
+@endsection

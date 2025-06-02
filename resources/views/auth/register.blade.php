@@ -1,62 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register - StoryCart</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        body {
-            font-family: sans-serif;
-            background: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .register-form {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px #ccc;
-            width: 400px;
-        }
-        .form-control {
-            width: 100%;
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            font-size: 16px;
-            border-radius: 4px;
-        }
-    </style>
-</head>
-<body>
+@extends('layouts.app')
 
-<div class="register-form">
-    <h2 style="text-align: center;">Register</h2>
+@section('content')
+<div class="container" style="max-width: 500px; margin-top: 50px;">
+    <div class="card">
+        <div class="card-header text-center" style="background-color: #003366; color: white;">
+            <h4>Register</h4>
+        </div>
 
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+        <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-        <input type="text" name="name" class="form-control" placeholder="Full Name" value="{{ old('name') }}" required>
-        <input type="email" name="email" class="form-control" placeholder="Email Address" value="{{ old('email') }}" required>
-        <input type="password" name="password" class="form-control" placeholder="Password" required>
-        <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-        <button type="submit" class="btn">Register</button>
-    </form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                        name="name" value="{{ old('name') }}" required autofocus placeholder="Enter your full name">
 
-    <p style="text-align:center; margin-top:10px;">
-        Already have an account? <a href="{{ route('login') }}">Login here</a>
-    </p>
+                    @error('name')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="email">Email Address</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                        name="email" value="{{ old('email') }}" required placeholder="Enter your email address">
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="password">Password</label>
+                    <input id="password" type="password"
+                        class="form-control @error('password') is-invalid @enderror"
+                        name="password" required placeholder="Enter your password">
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input id="password_confirmation" type="password"
+                        class="form-control" name="password_confirmation" required placeholder="Confirm your password">
+                </div>
+
+                <div class="form-group mt-4 text-center">
+                    <button type="submit" class="btn btn-primary w-100" style="background-color: #003366;">
+                        Register
+                    </button>
+                </div>
+
+                <div class="form-group mt-3 text-center">
+                    <a href="{{ route('login') }}">Already have an account? Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-
-</body>
-</html>
+@endsection

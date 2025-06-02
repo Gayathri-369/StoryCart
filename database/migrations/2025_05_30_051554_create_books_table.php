@@ -10,17 +10,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    { 
         Schema::create('books', function (Blueprint $table) {
-        $table->id();
-        $table->string('title');
-        $table->string('author');
-        $table->decimal('price', 8, 2);
-        $table->string('cover')->nullable();
-        $table->integer('rating')->default(4);
-        $table->text('description')->nullable();
-        $table->timestamps();
-    });
+            $table->id(); // Primary key
+            $table->string('title');
+            $table->string('author');
+            $table->decimal('price', 8, 2); // Up to 999,999.99
+            $table->text('description')->nullable(); // Description can be null
+            $table->timestamps(); // created_at and updated_at
+        });
+       
     }
 
     /**

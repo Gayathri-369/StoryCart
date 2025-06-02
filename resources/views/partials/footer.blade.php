@@ -1,4 +1,4 @@
-{{-- <!-- resources/views/partials/footer.blade.php -->
+<!-- resources/views/partials/footer.blade.php -->
 <footer class="footer" style="background: linear-gradient(135deg, #e3f5ec, #ffffff); padding: 60px 20px 30px; color: #2c3e50; font-family: 'Segoe UI', sans-serif;">
     <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
         <div style="flex: 1 1 300px;">
@@ -54,4 +54,4 @@
         <p style="font-size: 14px; margin-top: 30px; color: #555;">© 2025 StoryCart — All Rights Reserved</p>
         <p style="font-size: 14px; margin-top: 5px; color: #555;">Crafted with 📚 and ❤️ by StoryCart Team</p>
     </div>
-</footer> --}}
+</footer>
